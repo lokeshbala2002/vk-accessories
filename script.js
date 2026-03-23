@@ -36,6 +36,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Check if cart is empty
+    if (cartItems.length === 0) {
+      alert("⚠️ Your cart is empty! Please add items before checkout.");
+      return;
+    }
+
+    // Calculate order total
+    let orderTotal = 0;
+    cartItems.forEach(item => {
+      const price = parseFloat(item.price.replace(/[₹,]/g, ''));
+      orderTotal += price * item.qty;
+    });
+
     // Add order to Firestore (checkout form)
     db.collection("orders").add({
       orderType: "checkout",
@@ -48,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
         city: city,
         state: state
       },
+      items: cartItems, // Include cart items
+      total: orderTotal,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       status: "pending"
     })
@@ -57,11 +72,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Send WhatsApp notification
       const whatsappNumber = "918270534479";
-      const message =
-        `New Order:%0AOrder ID: ${docRef.id}%0AName: ${name}%0APhone: ${phone}%0ADelivery: ${house}, ${address}, ${city}, ${state}, ${pincode}`;
+      let message = `New Order:%0AOrder ID: ${docRef.id}%0AName: ${name}%0APhone: ${phone}%0ADelivery: ${house}, ${address}, ${city}, ${state}, ${pincode}%0A%0AItems:`;
+
+      cartItems.forEach(item => {
+        message += `%0A- ${item.name} (Qty: ${item.qty}) - ${item.price}`;
+      });
+
+      message += `%0A%0ATotal: ₹${orderTotal.toLocaleString('en-IN')}`;
 
       window.open(
-        `https://wa.me/${whatsappNumber}?text=${message}`,
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
         "_blank"
       );
 
@@ -300,6 +320,7 @@ window.showSection = function(sectionName) {
   else if (sectionName === 'checkout') {
     targetId = 'checkout-page';
     closeCartPanel();
+    renderCheckoutSummary(); // Update checkout summary with current cart
   }
 
   if (targetId) {
@@ -441,6 +462,60 @@ function updateCartBadge() {
   const count = document.getElementById('cartCount');
   if (badge) badge.textContent = cartItems.length;
   if (count) count.textContent = cartItems.length;
+}
+
+// ============================================================
+// CHECKOUT SUMMARY
+// ============================================================
+function renderCheckoutSummary() {
+  const container = document.getElementById('checkoutItemsContainer');
+  const totalsContainer = document.getElementById('checkoutTotals');
+
+  if (!container || !totalsContainer) return;
+
+  // Render items
+  container.innerHTML = cartItems.map(item => `
+    <div class="checkout-item">
+      <div class="checkout-item-img-wrap">
+        <img src="${item.img}" alt="${item.name}" />
+        <span class="checkout-qty-badge">${item.qty}</span>
+      </div>
+      <div class="checkout-item-info">
+        <p>${item.name}</p>
+        <p class="checkout-sku">${item.sku}</p>
+        <p class="checkout-meta">Colour: <strong>${item.colour}</strong> &nbsp;|&nbsp; Size: <strong>${item.size}</strong></p>
+      </div>
+      <strong>${item.price}</strong>
+    </div>
+  `).join('');
+
+  // Calculate totals
+  let subtotal = 0;
+  cartItems.forEach(item => {
+    const price = parseFloat(item.price.replace(/[₹,]/g, ''));
+    subtotal += price * item.qty;
+  });
+  const deliveryFee = 60; // Fixed delivery fee
+  const total = subtotal + deliveryFee;
+
+  // Render totals
+  totalsContainer.innerHTML = `
+    <div class="checkout-total-row">
+      <div>
+        <span>Subtotal (${cartItems.length})</span>
+        <p class="tax-small">MRP incl. of all taxes</p>
+      </div>
+      <span>₹${subtotal.toLocaleString('en-IN')}</span>
+    </div>
+    <div class="checkout-total-row">
+      <span>Delivery Fee</span>
+      <span>₹${deliveryFee}</span>
+    </div>
+    <div class="checkout-total-row total-row-big">
+      <strong>Total Amount</strong>
+      <strong class="total-price">₹${total.toLocaleString('en-IN')}</strong>
+    </div>
+  `;
 }
 
 // ============================================================
