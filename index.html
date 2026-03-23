@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VK Accessories</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <!-- Firebase SDK v8 (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  
+  <!-- Firebase Configuration -->
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <span>Free shipping on orders above ₹999 &nbsp;|&nbsp; New Collection: Pashmina Series Now Live</span>
+  </div>
+<body>
+
+<!-- 🔥 HEADER START -->
+<header class="site-header">
+
+  <!-- TOP ROW -->
+  <div class="top-bar">
+    <div class="pincode">
+      <i class="fa-solid fa-location-dot"></i>
+      Update Delivery Pincode
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="logo" onclick="showHomePage()">VK Accessories</div>
+
+    <div class="icons">
+      <i class="fa-regular fa-heart"></i>
+      <i class="fa-solid fa-bag-shopping" id="cartBtn"></i>
+      <i class="fa-regular fa-user"></i>
+    </div>
+  </div>
+
+  <!-- MENU ROW -->
+  <nav class="main-nav">
+    <a href="#">Neckles <i class="fa-solid fa-chevron-down"></i></a>
+    <a href="#">Bangles <i class="fa-solid fa-chevron-down"></i></a>
+    <a href="#">Watches <i class="fa-solid fa-chevron-down"></i></a>
+    <a href="#">Bracelet <i class="fa-solid fa-chevron-down"></i></a>
+    <a href="#">Rings <i class="fa-solid fa-chevron-down"></i></a>
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </nav>
+
+</header>
+<!-- 🔥 HEADER END -->
+
+<!-- rest of your website -->
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#categories" onclick="closeMobileMenu()">Neckles</a></li>
+        <li><a href="#categories" onclick="closeMobileMenu()">Bangles</a></li>
+        <li><a href="#categories" onclick="closeMobileMenu()">Watches</a></li>
+        <li><a href="#categories" onclick="closeMobileMenu()">Braceslet</a></li>
+        <li><a href="#categories" onclick="closeMobileMenu()">Rings</a></li>
+        <li><a href="#featured" onclick="closeMobileMenu()">Featured</a></li>
+        <li><a href="#offers" onclick="closeMobileMenu()">Offers</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HOME PAGE ===================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=1400&q=80" alt="Hero Jewelry" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-tagline">New Collection</p>
+        <h1>Timeless Elegance</h1>
+        <p class="hero-sub">Handcrafted jewelry for every occasion</p>
+        <a href="#featured" class="btn-primary">Shop Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP BY CATEGORY -->
+  <section class="section categories-section" id="categories">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Shop by Category</h2>
+        <p>Discover our curated collections</p>
+      </div>
+      <div class="category-grid animate-on-scroll">
+        <div class="category-card" onclick="showSection('earrings')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=300&q=80" alt="Necklaces" />
+          </div>
+          <span>Necklaces</span>
+        </div>
+        <div class="category-card" onclick="showSection('earrings')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=300&q=80" alt="Earrings" />
+          </div>
+          <span>Earrings</span>
+        </div>
+        <div class="category-card" onclick="showSection('earrings')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&q=80" alt="Rings" />
+          </div>
+          <span>Rings</span>
+        </div>
+        <div class="category-card" onclick="showSection('earrings')">
+          <div class="cat-img-wrap">
+            <img src="https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=300&q=80" alt="Bracelets" />
+          </div>
+          <span>Bracelets</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRESH DROP BANNER -->
+  <section class="fresh-drop-banner animate-on-scroll">
+    <div class="fresh-drop-left">
+      <h2>Fresh Drop</h2>
+      <p>Consider this your <strong>new silver update</strong></p>
+      <a href="#featured" class="btn-outline">Shop New</a>
+    </div>
+    <div class="fresh-drop-right">
+      <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Fresh Drop" />
+    </div>
+  </section>
+
+  <!-- FEATURED COLLECTION -->
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Featured Collection</h2>
+        <p>Handpicked pieces for the discerning collector</p>
+      </div>
+      <div class="product-grid animate-on-scroll" id="featuredGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE OFFERS -->
+  <section class="section offers-section" id="offers">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Exclusive Offers</h2>
+        <p>Discover luxury at unbeatable prices</p>
+      </div>
+      <div class="offers-grid animate-on-scroll">
+        <div class="offer-card offer-card-dark">
+          <div class="offer-text">
+            <p>Sparkle for Every Occasion</p>
+            <h3>Under ₹999</h3>
+            <p class="offer-sub">From Elegant Wedding Necklaces</p>
+            <a href="#" class="btn-white-sm">Shop Now</a>
+          </div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Offer 1" />
+          </div>
+        </div>
+        <div class="offers-right-col">
+          <div class="offer-card offer-card-light">
+            <div class="offer-text">
+              <h3>Elevate Your Elegance</h3>
+              <p>Under ₹1099</p>
+              <a href="#" class="btn-dark-sm">Shop Now</a>
+            </div>
+            <div class="offer-img-sm">
+              <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=300&q=80" alt="Offer 2" />
+            </div>
+          </div>
+          <div class="offer-card offer-card-cream">
+            <div class="offer-text">
+              <h3>Indulge in Luxury</h3>
+              <p>Under ₹489</p>
+              <a href="#" class="btn-dark-sm">Shop Now</a>
+            </div>
+            <div class="offer-img-sm">
+              <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=300&q=80" alt="Offer 3" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURATED COMBOS -->
+  <section class="section combos-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Curated Combos</h2>
+        <p>Complete your look with perfectly paired sets</p>
+      </div>
+      <div class="combos-grid animate-on-scroll">
+        <div class="combo-card">
+          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Combo 1" />
+          <div class="combo-overlay"><p>All Gold<br/><small>Anniversary Day</small></p></div>
+        </div>
+        <div class="combo-card">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" alt="Combo 2" />
+          <div class="combo-overlay"><p>Pearl Body<br/><small>Heritage Collection</small></p></div>
+        </div>
+        <div class="combo-card">
+          <img src="https://images.unsplash.com/photo-1619119069152-a2b331eb392a?w=400&q=80" alt="Combo 3" />
+          <div class="combo-overlay"><p>Glam<br/><small>Evening Sets</small></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM SECTION -->
+  <section class="section instagram-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <p class="insta-icon">💎 Follow Us on Instagram</p>
+        <p>See how our customers style their favorite pieces.</p>
+        <a href="#" class="btn-dark-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          View on Instagram
+        </a>
+      </div>
+      <div class="instagram-grid animate-on-scroll">
+        <div class="insta-item"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=300&q=80" alt="Instagram 1" /></div>
+        <div class="insta-item"><img src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?w=300&q=80" alt="Instagram 2" /></div>
+        <div class="insta-item insta-overlay-item">
+          <img src="https://images.unsplash.com/photo-1602163474044-bdda8777c0be?w=300&q=80" alt="Instagram 3" />
+          <div class="insta-view-overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>View on Instagram</span>
+          </div>
+        </div>
+        <div class="insta-item"><img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=300&q=80" alt="Instagram 4" /></div>
+        <div class="insta-item"><img src="https://images.unsplash.com/photo-1601121141461-9d6647bef0a1?w=300&q=80" alt="Instagram 5" /></div>
+        <div class="insta-item"><img src="https://images.unsplash.com/photo-1616428315812-7c7ea1723f5a?w=300&q=80" alt="Instagram 6" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EARRINGS PAGE (Section) ===================== -->
+  <section class="page-section hidden" id="earrings-page">
+    <!-- Category Banner -->
+    <div class="category-banner">
+      <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=1400&q=80" alt="Earrings Banner" />
+      <div class="cat-banner-content">
+        <span class="new-launch-badge">NEW LAUNCH</span>
+        <h1>Pashmina</h1>
+        <p>Adorn yourself with luxurious heritage</p>
+      </div>
+    </div>
+    <div class="breadcrumb-bar">
+      <div class="container">
+        <span class="breadcrumb"><a href="#" onclick="showHomePage()">Home</a> › <span>Earrings</span></span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="products-header">
+        <h2>Earrings</h2>
+        <div class="products-meta">
+          <button class="filter-btn">Filters <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+          <span>226 Total Products</span>
+          <div class="sort-select">
+            Sort by: <strong>Best Sellers</strong>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="product-grid" id="earringsGrid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRODUCT DETAIL PAGE ===================== -->
+  <section class="page-section hidden" id="product-page">
+    <div class="breadcrumb-bar">
+      <div class="container">
+        <span class="breadcrumb"><a href="#" onclick="showHomePage()">Home</a> › <a href="#" onclick="showSection('earrings')">Earnings</a> › <span>Golden Butterfly Tiny Stu...</span></span>
+      </div>
+    </div>
+    <div class="container product-detail-container">
+      <div class="product-gallery">
+        <div class="thumb-list" id="thumbList">
+          <div class="thumb active" onclick="switchMainImg(0)"><img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=200&q=80" alt="t1"/></div>
+          <div class="thumb" onclick="switchMainImg(1)"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=80" alt="t2"/></div>
+          <div class="thumb" onclick="switchMainImg(2)"><img src="https://images.unsplash.com/photo-1603974372039-adc49044b6bd?w=200&q=80" alt="t3"/></div>
+          <div class="thumb" onclick="switchMainImg(3)"><img src="https://images.unsplash.com/photo-1602163474044-bdda8777c0be?w=200&q=80" alt="t4"/></div>
+        </div>
+        <div class="main-img-wrap">
+          <img id="mainProductImg" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=700&q=80" alt="Product Main" />
+        </div>
+      </div>
+      <div class="product-info">
+        <h1 class="product-title">Golden Butterfly Tiny Studded Affair Earrings with Black Chain</h1>
+        <p class="product-sku">FER0381B</p>
+        <div class="product-price">
+          <span class="price-current">₹31,580</span>
+          <span class="price-original">₹29,350</span>
+        </div>
+        <p class="tax-note">MRP incl. of all taxes</p>
+        <div class="product-options">
+          <p class="option-label">Choose Colour</p>
+          <div class="colour-options">
+            <div class="colour-swatch active"><img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=80&q=80" alt="Silver"/><span>Silver</span></div>
+            <div class="colour-swatch"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=80&q=80" alt="Silver"/><span>Silver</span></div>
+            <div class="colour-swatch"><img src="https://images.unsplash.com/photo-1602163474044-bdda8777c0be?w=80&q=80" alt="Silver"/><span>Silver</span></div>
+          </div>
+          <p class="option-label" style="margin-top:16px">Size</p>
+          <div class="size-options">
+            <button class="size-btn active">10 mm</button>
+            <button class="size-btn">15 mm</button>
+            <button class="size-btn">20 mm</button>
+          </div>
+          <p class="option-label stock-label" style="margin-top:16px">Quantity <span class="low-stock">(Low stock: 8 left)</span></p>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+            <span class="qty-val" id="productQty">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <div class="product-actions">
+          <button class="btn-buy-now" onclick="showToast('Order placed! Redirecting to payment...')">Buy Now</button>
+          <button class="btn-add-cart-detail" onclick="addToCartDetail()">Add to Cart</button>
+        </div>
+        <p class="extra-acc-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Add Extra accessories are available only with product purchase.
+        </p>
+        <div class="trust-badges">
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span>50K+ Happy Customers</span></div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Dedicated Customer Support</span></div>
+          <div class="badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Delivered within 6–7 working days</span></div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-head" onclick="toggleAccordion(this)">Product Description <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion-body">Handcrafted with premium materials. The Golden Butterfly Earrings feature a unique tiny studded affair design with black chain accents, perfect for all occasions.</div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-head" onclick="toggleAccordion(this)">Refund and Return Policy <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="accordion-body">We offer 7-day easy returns. Items must be in original condition and packaging. Contact support to initiate a return.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- You May Also Like -->
+    <div class="container also-like-section">
+      <h2 class="also-like-title">You May Also Like</h2>
+      <div class="product-grid" id="alsoLikeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===================== CART PAGE ===================== -->
+  <section class="page-section hidden" id="cart-page">
+    <div class="container">
+      <h2 class="cart-title">Your shopping Cart (<span id="cartCount">2</span>)</h2>
+      <div class="cart-layout">
+        <div class="cart-items" id="cartItems">
+          <!-- Injected by JS -->
+        </div>
+        <div class="cart-sidebar">
+          <div class="order-details-card">
+            <h3>Order Details</h3>
+            <div class="order-row">
+              <div>
+                <span>Subtotal (2)</span>
+                <p class="tax-small">MRP incl. of all taxes</p>
+              </div>
+              <strong>₹63,740</strong>
+            </div>
+            <div class="order-row">
+              <span>Delivery Fee</span>
+              <strong>₹60</strong>
+            </div>
+            <div class="order-divider"></div>
+            <div class="order-row total-row">
+              <span>Total Amount</span>
+              <strong class="total-price">₹63,800</strong>
+            </div>
+            <button class="btn-checkout" onclick="showSection('checkout')">Checkout</button>
+          </div>
+          <div class="gift-options-card">
+            <h3>Gift Options</h3>
+            <label class="gift-option">
+              <input type="checkbox" />
+              <div>
+                <p>Gift Packaging</p>
+                <p class="gift-sub">Add a <strong>gift wrap</strong> with this item</p>
+              </div>
+              <span class="gift-price">₹50</span>
+            </label>
+            <label class="gift-option">
+              <input type="checkbox" />
+              <div>
+                <p>Gift Note</p>
+                <p class="gift-sub">Add a <strong>Note</strong> with this item</p>
+              </div>
+              <span class="gift-price">Free</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CHECKOUT PAGE ===================== -->
+  <section class="page-section hidden" id="checkout-page">
+    <div class="checkout-layout">
+      <div class="checkout-form-col">
+        <form id="checkoutForm">
+          <div class="checkout-section-block">
+            <div class="checkout-heading-row">
+              <h3>Contact</h3>
+              <a href="#" class="signin-link" onclick="showToast('Sign in feature coming soon!')">Sign In</a>
+            </div>
+            <input id="checkoutName" type="text" class="form-input" placeholder="Full Name*" required />
+            <input id="checkoutPhone" type="tel" class="form-input" placeholder="Mobile Number*" required />
+            <label class="checkbox-label">
+              <input type="checkbox" />
+              Notify me for orders, updates and offers.
+            </label>
+          </div>
+          <div class="checkout-section-block">
+            <h3>Delivery</h3>
+            <input id="checkoutPincode" type="text" class="form-input" placeholder="Pincode*" required />
+            <input id="checkoutHouse" type="text" class="form-input" placeholder="House Number/Tower/Block*" required />
+            <input id="checkoutAddress" type="text" class="form-input" placeholder="Address*" required />
+            <div class="form-row-two">
+              <input id="checkoutCity" type="text" class="form-input" placeholder="City/District*" required />
+              <input id="checkoutState" type="text" class="form-input" placeholder="State*" required />
+            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" />
+              Save this information for next time
+            </label>
+          </div>
+          <div class="checkout-section-block">
+            <h3>Payment</h3>
+            <div class="payment-options">
+              <label class="payment-option selected">
+                <input type="radio" name="payment" checked />
+                Pay with UPI, Cards, Net Banking, etc.
+                <div class="payment-logos">
+                  <span class="pay-logo visa">VISA</span>
+                  <span class="pay-logo rupay">RuPay</span>
+                  <span class="pay-logo upi">UPI</span>
+                </div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" />
+                CRED Pay (Rewards on UPI, Cards, etc.)
+                <div class="payment-logos">
+                  <span class="pay-logo visa">VISA</span>
+                  <span class="pay-logo rupay">RuPay</span>
+                  <span class="pay-logo upi">UPI</span>
+                </div>
+              </label>
+            </div>
+          </div>
+          <button class="btn-pay-now" type="submit">Pay Now</button>
+        </form>
+      </div>
+      <div class="checkout-summary-col">
+        <div class="checkout-item">
+          <div class="checkout-item-img-wrap">
+            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=200&q=80" alt="Product" />
+            <span class="checkout-qty-badge">2</span>
+          </div>
+          <div class="checkout-item-info">
+            <p>Golden Butterfly Tiny Studded Affair Earrings With Black Chain</p>
+            <p class="checkout-sku">FER0381B</p>
+            <p class="checkout-meta">Colour: <strong>Silver</strong> &nbsp;|&nbsp; Size: <strong>10mm</strong></p>
+          </div>
+          <strong>₹31,580</strong>
+        </div>
+        <div class="checkout-item">
+          <div class="checkout-item-img-wrap">
+            <img src="https://images.unsplash.com/photo-1602163474044-bdda8777c0be?w=200&q=80" alt="Product" />
+            <span class="checkout-qty-badge">2</span>
+          </div>
+          <div class="checkout-item-info">
+            <p>Golden Butterfly Tiny Studded Affair Earrings With Black Chain</p>
+            <p class="checkout-sku">FER0381B</p>
+            <p class="checkout-meta">Colour: <strong>Silver</strong> &nbsp;|&nbsp; Size: <strong>10mm</strong></p>
+          </div>
+          <strong>₹31,580</strong>
+        </div>
+        <div class="checkout-totals">
+          <div class="checkout-total-row">
+            <div>
+              <span>Subtotal (2)</span>
+              <p class="tax-small">MRP incl. of all taxes</p>
+            </div>
+            <span>₹63,740</span>
+          </div>
+          <div class="checkout-total-row">
+            <span>Delivery Fee</span>
+            <span>₹60</span>
+          </div>
+          <div class="checkout-total-row total-row-big">
+            <strong>Total Amount</strong>
+            <strong class="total-price">₹63,800</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD TO CART SLIDE-IN PANEL -->
+  <div class="cart-panel-overlay" id="cartPanelOverlay" onclick="toggleCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-panel-header">
+      <h3>1 Items Added Successfully</h3>
+      <button class="close-panel-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-panel-item">
+      <div class="cart-panel-img">
+        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=200&q=80" alt="Earrings" />
+      </div>
+      <div class="cart-panel-info">
+        <p>Golden Butterfly Tiny Studded Affair Earrings With Black Chain</p>
+        <p class="cart-panel-sku">FER0381B</p>
+        <p class="cart-panel-meta">Colour: <strong>Silver</strong> | Size: <strong>10mm</strong></p>
+        <p class="option-label" style="margin-top:8px; font-size:12px">Quantity</p>
+        <div class="qty-control small">
+          <button class="qty-btn" onclick="changePanelQty(-1)">-</button>
+          <span class="qty-val" id="panelQty">1</span>
+          <button class="qty-btn" onclick="changePanelQty(1)">+</button>
+        </div>
+      </div>
+      <div class="cart-panel-price">
+        <strong>₹31,580</strong>
+        <span class="price-original">₹29,350</span>
+      </div>
+      <button class="delete-btn" onclick="showToast('Item removed from cart')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </button>
+    </div>
+    <div class="matching-accessories">
+      <h4>Add Extra Matching Accessories</h4>
+      <div class="accessories-grid">
+        <div class="accessory-card">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=80" alt="Back Chain" />
+          <p>Back Chain</p>
+          <span>₹60</span>
+          <button class="acc-btn remove-btn" onclick="showToast('Item removed')">Remove</button>
+        </div>
+        <div class="accessory-card">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=80" alt="Back Chain" />
+          <p>Back Chain</p>
+          <span>₹60</span>
+          <button class="acc-btn add-btn" onclick="showToast('Item added to cart!')">Add</button>
+        </div>
+        <div class="accessory-card">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=80" alt="Back Chain" />
+          <p>Back Chain</p>
+          <span>₹60</span>
+          <button class="acc-btn add-btn" onclick="showToast('Item added to cart!')">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-panel-footer">
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <span>₹31,640</span>
+      </div>
+      <p class="tax-small">MRP incl. of all taxes</p>
+      <div class="cart-panel-btns">
+        <button class="btn-go-cart" onclick="showSection('cart')">Go to My Cart</button>
+        <button class="btn-checkout-panel" onclick="showSection('checkout')">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner container">
+      <div class="footer-brand">
+        <h3>VK Accessories</h3>
+        <p>Exquisite Jewelry Crafted With Passion. Elevate Your Style With Our Timeless Collection Of Necklaces, Rings, And More.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#" onclick="showSection('earrings')">Necklaces</a></li>
+          <li><a href="#" onclick="showSection('earrings')">Earrings</a></li>
+          <li><a href="#" onclick="showSection('earrings')">Rings</a></li>
+          <li><a href="#" onclick="showSection('earrings')">Bracelets</a></li>
+          <li><a href="#" onclick="showSection('earrings')">Bangles</a></li>
+          <li><a href="#" onclick="showSection('earrings')">Watches</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Our Story</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 VK Accessories. All rights reserved. &nbsp; <a href="#">Privacy Policy</a> &nbsp; <a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <!-- Load application script after Firebase is initialized -->
+  <script src="script.js"></script>
+</body>
+</html>
