@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "firestore": {
     "rules": "firestore.rules",
@@ -12,3 +13,19 @@
     ]
   }
 }
+=======
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
+>>>>>>> 50913a1b2281e7394955bb434172b505ddbb0488
